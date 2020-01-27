@@ -8,10 +8,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     unique: true,
@@ -19,6 +15,10 @@ const UserSchema = new Schema({
     validate: value => {
       return validator.isEmail(value)
     },
+  },
+  password: {
+    type: String,
+    required: true,
   },
 })
 
@@ -56,4 +56,4 @@ UserSchema.statics.getByCredentials = async function(email, password) {
   return user
 }
 
-module.exports = model('users', UserSchema)
+export default model('users', UserSchema)
